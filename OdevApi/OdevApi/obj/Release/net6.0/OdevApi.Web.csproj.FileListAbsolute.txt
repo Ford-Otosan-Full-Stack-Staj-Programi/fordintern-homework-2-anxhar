@@ -1,0 +1,7 @@
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\bin\Release\net6.0\CoverletSourceRootsMapping
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.csproj.AssemblyReference.cache
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.AssemblyInfoInputs.cache
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.AssemblyInfo.cs
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.csproj.CoreCompileInputs.cache
+C:\Users\Berkan Keten\source\repos\fordintern-homework-2-anxhar\OdevApi\OdevApi\obj\Release\net6.0\OdevApi.Web.MvcApplicationPartsAssemblyInfo.cache
