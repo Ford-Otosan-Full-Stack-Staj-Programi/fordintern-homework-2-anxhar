@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using OdevApi.Data;
+using OdevApi.Data.Repo.Abstract;
+using OdevApi.Data.Repo.Concrete;
 using OdevApi.Service;
 using OdevApi.Service.Abstract;
 using OdevApi.Service.Concrete;
@@ -35,6 +37,7 @@ public static class StartUpExtension
         // repos
         services.AddScoped<IGenericRepository<Account>, GenericRepository<Account>>();
         services.AddScoped<IGenericRepository<Person>, GenericRepository<Person>>();
+        services.AddScoped<IPersonRepo, PersonRepo>();
 
         // services
         services.AddScoped<IPersonService, PersonService>();

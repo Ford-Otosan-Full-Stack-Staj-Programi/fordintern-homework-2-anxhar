@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using OdevApi.Data;
+using System.Security.Claims;
+using Azure;
 
 namespace OdevApi.Web.Controllers;
 
@@ -19,23 +21,14 @@ public class PersonController : ControllerBase
     }
 
 
-    [HttpGet]
+    [HttpGet("GetAll")]
     [Authorize]
-    [ResponseCache(CacheProfileName = "Duration45")]
-    public BaseResponse<List<PersonDto>> GetAll()
+
+    public BaseResponse<List<PersonDto>> GetAllByAccountId()
     {
         Log.Debug("PersonController.GetAll");
-        var response = service.GetAll();
-        return response;
-    }
-
-
-    [HttpGet("{id}")]
-    [Authorize]
-    public BaseResponse<PersonDto> GetById(int id)
-    {
-        Log.Debug("PersonController.GetById");
-        var response = service.GetById(id);
+        var id = int.Parse((User.Identity as ClaimsIdentity).FindFirst("AccountId").Value);
+        var response = service.GetAllByAccountId(id);
         return response;
     }
 
@@ -45,8 +38,8 @@ public class PersonController : ControllerBase
     {
         Log.Debug("PersonController.Post");
         var claimsList = User.Claims;
-        var account = claimsList.Where(x => x.Type == "AccountId").FirstOrDefault();
-        var accountId = account.Value;
+        var id = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+        request.AccountId = Int32.Parse(id);
         var response = service.Insert(request);
         return response;
     }
@@ -57,16 +50,20 @@ public class PersonController : ControllerBase
     {
         Log.Debug("PersonController.Put");
         request.Id = id;
-        var response = service.Update(id, request);
-        return response;
+        return service.Update(id, request); ;
     }
 
     [HttpDelete("{id}")]
     [Authorize]
-    public BaseResponse<bool> Delete(int id)
+    public BaseResponse<bool> Delete(int id, string accountId)
     {
         Log.Debug("PersonController.Delete");
-        var response = service.Remove(id);
+        string otoAccountId = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+        BaseResponse<bool> response = null;
+        if (accountId == otoAccountId)
+        {
+            response = service.Remove(id);           
+        }
         return response;
     }
 

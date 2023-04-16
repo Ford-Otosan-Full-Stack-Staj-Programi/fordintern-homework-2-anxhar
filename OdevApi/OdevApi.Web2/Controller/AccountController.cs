@@ -51,7 +51,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = Role.Admin)]
+    [Authorize(Roles = "Admin")]
     public BaseResponse<bool> Post([FromBody] AccountDto request)
     {
         Log.Debug("AccountController.Post");

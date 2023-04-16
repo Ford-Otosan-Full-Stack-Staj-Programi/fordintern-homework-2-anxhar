@@ -6,6 +6,7 @@ public interface IBaseService<Dto, TEntity>
 {
     BaseResponse<Dto> GetById(int id);
     BaseResponse<List<Dto>> GetAll();
+    //BaseResponse<List<Dto>> GetAllByAccountId(TEntity id);
     BaseResponse<bool> Insert(Dto insertResource);
     BaseResponse<bool> Update(int id, Dto updateResource);
     BaseResponse<bool> Remove(int id);

@@ -1,13 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.IdentityModel.Tokens;
 using OdevApi.Base;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace OdevApi.Data;
 
 public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
 {
-    private readonly AppDbContext context;
-    private DbSet<TEntity> entities;
+    protected readonly AppDbContext context;
+    public DbSet<TEntity> entities;
 
     public GenericRepository(AppDbContext context)
     {
@@ -24,9 +28,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         return entities.Find(entityId);
     }
 
+
     public void Insert(TEntity entity)
     {
-        //entity.GetType().GetProperty("AccountId").SetValue(entity, Account);
         entity.GetType().GetProperty("CreatedBy").SetValue(entity, "patika@dev.com");
         entity.GetType().GetProperty("CreatedAt").SetValue(entity, DateTime.UtcNow);
         entities.Add(entity);
@@ -60,7 +64,8 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
 
     public void Update(TEntity entity)
     {
-        entities.Update(entity);
+        context.ChangeTracker.Clear();
+        context.Update(entity);
     }
 
     public List<TEntity> Where(Expression<Func<TEntity, bool>> where)

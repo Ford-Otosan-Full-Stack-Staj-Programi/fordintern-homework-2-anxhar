@@ -10,4 +10,5 @@ public class Account : BaseModal
     public string Email { get; set; }
     public string Role { get; set; }
     public DateTime LastActivity { get; set; }
+    public virtual List<Person> Persons { get; set; }
 }

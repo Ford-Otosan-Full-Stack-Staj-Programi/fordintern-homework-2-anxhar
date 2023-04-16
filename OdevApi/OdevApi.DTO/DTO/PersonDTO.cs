@@ -5,8 +5,6 @@ namespace OdevApi.Dto;
 
 public class PersonDto : BaseDto
 {
-    [Required]
-    [MaxLength(30)]
     [Display(Name = "Account Id")]
     public int AccountId { get; set; }
 
@@ -16,7 +14,7 @@ public class PersonDto : BaseDto
     public string FirstName { get; set; }
 
     [Required]
-    [MaxLength(50)]
+    [MaxLength(100)]
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
 
@@ -28,7 +26,7 @@ public class PersonDto : BaseDto
     public string Description { get; set; }
 
     [Phone]
-    [MaxLength(11)]
+    [MaxLength(50)]
     public string Phone { get; set; }
 
     [Required]

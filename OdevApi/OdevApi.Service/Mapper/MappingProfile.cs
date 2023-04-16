@@ -12,7 +12,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Person, PersonDto>();
         CreateMap<PersonDto, Person>();
-        CreateMap<Account, PersonDto>().ForMember(x => x.AccountId, opt => opt.MapFrom(s => s.Id));
 
         CreateMap<Account, AccountDto>();
         CreateMap<AccountDto, Account>();
